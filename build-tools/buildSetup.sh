@@ -8,7 +8,7 @@ declare -a DIST_LIST=("ces-fb" "ces-x11")
 DEVICE=$1
 DIST=$2
 
-if [ ! -z $DEVICE ]; then
+if [ ! -z $DEVICE ] && [ ! -z $DIST ]; then
         if [[ " ${DEV_LIST[@]} " =~ " ${DEVICE} " ]]; then
                 if [[ " ${DIST_LIST[@]} " =~ " ${DIST} " ]]; then
                         MACHINE=${DEVICE} DISTRO=${DIST} source ./setup-environment build
