@@ -2,9 +2,21 @@
 pipeline {
     agent { docker { image 'python:3.5.1' } }
     stages {
-        stage('build') {
+        stage('Repo-init') {
             steps {
-                echo 'Starting Build...'
+               sh echo 'Installing repo'
+               sh mkdir ~/bin
+               sh curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+               sh chmod a+x ~/bin/repo
+            }
+        }
+        stage('BSP-source download') {
+            steps {
+               sh PATH=${PATH}:~/bin
+               sh mkdir ces-bsp-platform
+               sh cd ces-bsp-platform
+               sh repo init -u https://github.com/software-celo/ces-bsp-platform -b warrior
+               sh repo sync
             }
         }
     }
