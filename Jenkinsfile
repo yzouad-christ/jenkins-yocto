@@ -6,7 +6,7 @@ pipeline {
         stage('Repo-init') {
             steps {
                sh echo 'Installing repo'
-               sh mkdir $PWD/bin
+               sh mkdir /home/bin
                sh curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
                sh chmod a+x ~/bin/repo
             }
