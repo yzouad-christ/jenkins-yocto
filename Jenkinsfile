@@ -1,4 +1,4 @@
-
+def REPO_SOURCE = "http://commondatastorage.googleapis.com/git-repo-downloads/repo"
 pipeline {
     agent any
 
@@ -7,7 +7,7 @@ pipeline {
             steps {
                sh echo 'Installing repo'
                sh mkdir /home/bin
-               sh curl 'http://commondatastorage.googleapis.com/git-repo-downloads/repo' > ~/bin/repo
+               sh curl ${REPO_SOURCE} > ~/bin/repo
                sh chmod a+x /home/bin/repo
             }
         }
