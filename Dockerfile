@@ -11,5 +11,8 @@ RUN apt-get update && apt-get install -y \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
     pylint3 xterm
 
+# Update $PATH variable
+ENV PATH="${PATH}:/home/jenkins/bin"
+
 # Listening port at runtime.
 EXPOSE 8080
