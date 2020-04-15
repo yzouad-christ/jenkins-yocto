@@ -5,7 +5,7 @@ IMAGE_NAME=$1
 
 if [ ! -z $IMAGE ]; then
         bitbake $IMAGE_NAME
-        exit 0
+        exit $?
 else
         echo "ERROR: Missing argument!"
         exit 1
