@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 WORKSPACE_PATH=$1
 BRANCH=$2
