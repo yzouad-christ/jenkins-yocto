@@ -9,10 +9,9 @@ pipeline {
     stages {
         stage('Install Repo') {
             steps {
-               sh "echo 'Installing repo'"
-               sh "mkdir ${HOME_PATH}/bin"
-               sh "curl ${REPO_SOURCE} > ${HOME_PATH}/bin/repo"
-               sh "chmod a+x ${HOME_PATH}/bin/repo"
+               dir('/home/jenkins/jenkins-repo') {
+               sh "./jenkins-yocto/installRepo.sh ${HOME_PATH}"
+               }
             }
         }
         stage('Download Source') {
