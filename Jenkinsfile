@@ -1,6 +1,6 @@
 def REPO_SOURCE = "http://commondatastorage.googleapis.com/git-repo-downloads/repo"
 def CES_BSP_SOURCE = "https://github.com/software-celo/ces-bsp-platform"
-def REPO_BRANCH = "rocko"
+def REPO_BRANCH = "warrior"
 def HOME_PATH = "/home/jenkins"
 
 pipeline {
@@ -17,28 +17,25 @@ pipeline {
         }
         stage('BSP-source download') {
             steps {
-               sh "mkdir ${HOME_PATH}/ces-bsp-platform"
-               sh "cd ${HOME_PATH}/ces-bsp-platform"
-               sh "yes | $HOME_PATH/bin/repo init -u ${CES_BSP_SOURCE} -b ${REPO_BRANCH}"
+               dir('/home/jenkins/jenkins-repo') {
+               sh "git clone https://github.com/yzouad-christ/jenkins-yocto.git"
+               sh "chmod -R 755 jenkins-yocto"
+               sh "./jenkins-yocto/getRepos.sh ${HOME_PATH} 'warrior' "
+               }
             }
         }
         stage('Sync-repo') {
             steps {
-               sh "$HOME_PATH/bin/repo sync"
+               dir('/home/jenkins/ces-bsp-platform') {
+               sh "${HOME_PATH}/bin/repo sync"
+               }
             }
         }
         stage('Set variables and source setup-environment') {
-            when {
-                expression { fileExists '${HOME_PATH}/ces-bsp-platform/setup-environment' == 'true' }
-            }
             steps {
-                sh "cd ${HOME_PATH}/ces-bsp-platform"
-                sh "MACHINE=pixi-cdl100 DISTRO=ces-fb source .${HOME_PATH}/ces-bsp-platform/setup-environment build"
-            }
-        }
-        stage('Image-build') {
-            steps {
-                sh "bitbake ces-qt-demoimage"
+                dir('/home/jenkins/jenkins-repo') {
+                sh "./jenkins-yocto/execBitbake.sh ${HOME_PATH}"
+                }
             }
         }
     }
