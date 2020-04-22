@@ -8,6 +8,8 @@ pipeline {
         stage('Install Repo') {
             steps {
                dir('/home/jenkins/jenkins-repo') {
+                    sh "git clone https://github.com/yzouad-christ/jenkins-yocto.git"
+                    sh "chmod -R 755 jenkins-yocto"
                     sh "./jenkins-yocto/installRepo.sh ${HOME_PATH}"
                }
             }
@@ -15,8 +17,6 @@ pipeline {
         stage('Download Source') {
             steps {
                dir('/home/jenkins/jenkins-repo') {
-                    sh "git clone https://github.com/yzouad-christ/jenkins-yocto.git"
-                    sh "chmod -R 755 jenkins-yocto"
                     sh "./jenkins-yocto/getRepos.sh ${HOME_PATH} 'warrior' "
                }
             }
