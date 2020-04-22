@@ -1,5 +1,3 @@
-def REPO_SOURCE = "http://commondatastorage.googleapis.com/git-repo-downloads/repo"
-def CES_BSP_SOURCE = "https://github.com/software-celo/ces-bsp-platform"
 def REPO_BRANCH = "warrior"
 def HOME_PATH = "/home/jenkins"
 
