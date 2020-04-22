@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Repo-init') {
+        stage('Install Repo') {
             steps {
                sh "echo 'Installing repo'"
                sh "mkdir ${HOME_PATH}/bin"
@@ -15,7 +15,7 @@ pipeline {
                sh "chmod a+x ${HOME_PATH}/bin/repo"
             }
         }
-        stage('BSP-source download') {
+        stage('Download Source') {
             steps {
                dir('/home/jenkins/jenkins-repo') {
                sh "git clone https://github.com/yzouad-christ/jenkins-yocto.git"
@@ -24,14 +24,14 @@ pipeline {
                }
             }
         }
-        stage('Sync-repo') {
+        stage('Sync Repo') {
             steps {
                dir('/home/jenkins/ces-bsp-platform') {
                sh "${HOME_PATH}/bin/repo sync"
                }
             }
         }
-        stage('Set variables and source setup-environment') {
+        stage('Build') {
             steps {
                 dir('/home/jenkins/jenkins-repo') {
                 sh "./jenkins-yocto/execBitbake.sh ${HOME_PATH}"
