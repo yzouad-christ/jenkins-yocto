@@ -1,5 +1,5 @@
 #!/bin/bash
-REPO_SOURCE = "http://commondatastorage.googleapis.com/git-repo-downloads/repo"
+REPO_SOURCE="http://commondatastorage.googleapis.com/git-repo-downloads/repo"
 HOME_PATH=$1
 
 if [ ! -d "${HOME_PATH}/bin" ]
