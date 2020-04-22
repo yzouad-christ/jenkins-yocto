@@ -2,6 +2,8 @@
 
 HOME_PATH=$1
 
+cd ${HOME_PATH}/ces-bsp-platform
+
 MACHINE=pixi-cdl100
 DISTRO=ces-fb
 source ./setup-environment build/ | echo 'y'
