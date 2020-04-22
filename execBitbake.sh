@@ -1,12 +1,10 @@
 #!/bin/bash
 
-#Image name that has to be built
-IMAGE_NAME=$1
+HOME_PATH=$1
 
-if [ ! -z $IMAGE ]; then
-        bitbake $IMAGE_NAME
-        exit $?
-else
-        echo "ERROR: Missing argument!"
-        exit 1
-fi
+MACHINE=pixi-cdl100
+DISTRO=ces-fb
+source ./setup-environment build/ | echo 'y'
+cd ${HOME_PATH}/ces-bsp-platform/build
+touch ${HOME_PATH}/ces-bsp-platform/build/conf/sanity.conf
+${HOME_PATH}/ces-bsp-platform/sources/poky/bitbake/bin/bitbake -D -v ces-qt-demoimage
