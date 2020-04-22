@@ -1,11 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-WORKSPACE_PATH=$1
+HOME_PATH=$1
 BRANCH=$2
 
+if [ ! -d "${HOME_PATH}/ces-bsp-platform" ]; then
+  mkdir $HOME_PATH/ces-bsp-platform
+fi
 
-mkdir $WORKSPACE_PATH/ces-bsp-platform
-cd $WORKSPACE_PATH/ces-bsp-platform
+cd $HOME_PATH/ces-bsp-platform
 
-$WORKSPACE_PATH/bin/repo init -u https://github.com/software-celo/ces-bsp-platform -b $BRANCH
-$WORKSPACE_PATH/bin/repo sync
+if [ ! "$(ls -A ${HOME_PATH}/ces-bsp-platform)" ]; then
+$HOME_PATH/bin/repo init -u https://github.com/software-celo/ces-bsp-platform -b $BRANCH
+$HOME_PATH/bin/repo sync
+fi
