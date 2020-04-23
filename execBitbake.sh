@@ -32,6 +32,8 @@ fi
 if [ $DEFAULT -eq 1 ]; then
   echo "WARNING: Build configurations not set"
   echo "WARNING: Setting default configuration"
+  echo "DEBUG: Setting debug mode"
+  DEBUG=1
   MACHINE=pixi-cdl100
   DISTRO=ces-fb
   IMAGE="ces-qt-demoimage"
@@ -52,4 +54,8 @@ echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local
 PATH=/home/jenkins/ces-bsp-platform/sources/poky/scripts:/home/jenkins/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
 
 # Build image
-${HOME_PATH}/ces-bsp-platform/sources/poky/bitbake/bin/bitbake ${IMAGE}
+if [ -z $DEBUG ]; then
+  ${HOME_PATH}/ces-bsp-platform/sources/poky/bitbake/bin/bitbake ${IMAGE}
+else
+  ${HOME_PATH}/ces-bsp-platform/sources/poky/bitbake/bin/bitbake -D -v ${IMAGE}
+fi
