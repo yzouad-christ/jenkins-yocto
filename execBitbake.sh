@@ -50,6 +50,9 @@ touch ${HOME_PATH}/ces-bsp-platform/build/conf/sanity.conf
 # Accept FSL_EULA
 echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local.conf
 
+# Set this variable to build as root
+FORCE_UNSAFE_CONFIGURE=1
+
 # Expand PATH variable
 PATH=/home/jenkins/ces-bsp-platform/sources/poky/scripts:/home/jenkins/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
 
