@@ -42,9 +42,12 @@ if [ $DEFAULT -eq 1 ]; then
   IMAGE="ces-qt-demoimage"
 fi
 
-
 # source setup-environment
 source ./setup-environment build/ | echo 'y'
+
+whoami
+printenv
+exit 1
 
 # Create sanity.conf to be able to build as root
 cd ${HOME_PATH}/ces-bsp-platform/build
