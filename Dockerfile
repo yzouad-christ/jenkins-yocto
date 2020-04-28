@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
 # Set working directory.
 WORKDIR /home/jenkins
 
+# Add user jenkins
+RUN adduser -D jenkins
+
 # change owner of /home/jenkins directory
 RUN chown -R jenkins /home/jenkins
 
