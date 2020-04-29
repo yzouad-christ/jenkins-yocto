@@ -45,22 +45,18 @@ fi
 # source setup-environment
 source ./setup-environment build/ | echo 'y'
 
-whoami
-printenv
-exit 1
-
 # Create sanity.conf to be able to build as root
 cd ${HOME_PATH}/ces-bsp-platform/build
-touch ${HOME_PATH}/ces-bsp-platform/build/conf/sanity.conf
+#touch ${HOME_PATH}/ces-bsp-platform/build/conf/sanity.conf
 
 # Accept FSL_EULA
 echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local.conf
 
 # Set this variable to build as root
-FORCE_UNSAFE_CONFIGURE=1
+#FORCE_UNSAFE_CONFIGURE=1
 
 # Expand PATH variable
-PATH=/home/jenkins/ces-bsp-platform/sources/poky/scripts:/home/jenkins/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
+#PATH=/home/jenkins/ces-bsp-platform/sources/poky/scripts:/home/jenkins/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
 
 # Build image
 if [ -z $DEBUG ]; then
