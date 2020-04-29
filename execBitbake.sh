@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Switch to jenkins user
-su - jenkins
-
 HOME_PATH=$1
 MACHINE_ARG=$2
 DISTRO_ARG=$3
