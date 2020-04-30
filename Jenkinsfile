@@ -8,8 +8,7 @@ pipeline {
         stage('Install Repo') {
             steps {
                dir('/home/jenkins/jenkins-repo') {
-                    sh "git clone https://github.com/yzouad-christ/jenkins-yocto.git"
-                    sh "chmod -R 755 jenkins-yocto"
+                   sh ".${HOME_PATH}/getHelperScripts.sh"
                     sh "./jenkins-yocto/installRepo.sh ${HOME_PATH}"
                }
             }
