@@ -24,7 +24,7 @@ jobs:
           command: |
                 MACHINE=pixi-cdl100
                 DISTRO=ces-fb
-                source /home/builder/ces-bsp-platform/setup-environment build && echo 'y'
+                printf 'yyy | source /home/builder/ces-bsp-platform/setup-environment build
                 bitbake ces-qt-demoimage
 
       - run:
@@ -32,7 +32,7 @@ jobs:
           command: |
                 MACHINE=crix-cq100 
                 DISTRO=ces-fb
-                source /home/builder/ces-bsp-platform/setup-environment build && echo 'y'
+                printf 'yyy | 'source /home/builder/ces-bsp-platform/setup-environment build
                 bitbake ces-qt-demoimage
 
 
