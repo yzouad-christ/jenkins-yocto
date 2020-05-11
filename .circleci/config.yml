@@ -11,6 +11,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Get helper-scripts
+          command: |
+                git clone https://github.com/yzouad-christ/jenkins-yocto.git /home/builder
+                cd /home/builder/jenkins-yocto
+                git checkout circleci-project-setup
+                chmod -R a+x /home/builder/jenkins-yocto
+      - run:
           name: Clone ces-bsp-platform
           command: |
                 git config --global user.email "yzouad@yzouad.com"
@@ -22,10 +29,8 @@ jobs:
       - run:
           name: Build ces-qt-demoimage (pixi-cdl100)
           command: |
-                MACHINE=pixi-cdl100
-                DISTRO=ces-fb
-                yes | source /home/builder/ces-bsp-platform/setup-environment build
-                bitbake ces-qt-demoimage
+                cd /home/builder/jenkins-yocto
+                ./execBitbake.sh "/home/builder" "pixi-cdl100" "ces-fb" "ces-qt-demoimage"
 
       - run:
           name: Build ces-qt-demoimage (crix-cql100)
