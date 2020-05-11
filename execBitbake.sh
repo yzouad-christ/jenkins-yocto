@@ -14,17 +14,20 @@ cd ${HOME_PATH}/ces-bsp-platform
 
 if [ ! -z $MACHINE_ARG ]; then
   MACHINE=${MACHINE_ARG}
+  DEFAULT=0
 else
   DEFAULT=1
 fi
 
 if [ ! -z $DISTRO_ARG ]; then
   DISTRO=${DISTRO_ARG}
+  DEFAULT=0
 else
   DEFAULT=1
 fi
 if [ ! -z $IMAGE_ARG ]; then
   IMAGE=${IMAGE_ARG}
+  DEFAULT=0
 else
   DEFAULT=1
 fi
