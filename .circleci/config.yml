@@ -24,14 +24,16 @@ jobs:
           command: |
                 MACHINE=pixi-cdl100
                 DISTRO=ces-fb
-                source /home/builder/ces-bsp-platform/setup-environment build | echo 'y' && bitbake ces-qt-demoimage
+                source /home/builder/ces-bsp-platform/setup-environment build | echo 'y'
+                bitbake ces-qt-demoimage
 
       - run:
           name: Build ces-qt-demoimage (crix-cql100)
           command: |
                 MACHINE=crix-cq100 
                 DISTRO=ces-fb
-                source /home/builder/ces-bsp-platform/setup-environment build | echo 'y' && bitbake ces-qt-demoimage
+                source /home/builder/ces-bsp-platform/setup-environment build | echo 'y'
+                bitbake ces-qt-demoimage
 
 
 workflows:
