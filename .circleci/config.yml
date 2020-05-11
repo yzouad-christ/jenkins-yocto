@@ -11,11 +11,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Get tools
-          command: |   
-                git clone https://github.com/yzouad-christ/jenkins-yocto.git
-                chmod -R a+x /home/builder/jenkins-yocto
-      - run:
           name: Clone ces-bsp-platform
           command: |                                         
                 mkdir /home/builder/ces-bsp-platform
