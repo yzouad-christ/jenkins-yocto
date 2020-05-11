@@ -1,13 +1,47 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+
+jobs:
+  build:
+    docker:
+      - image: crops/yocto:ubuntu-19.04-builder
+        environment:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          LANGUAGE: en_US.UTF-8
+    steps:
+      - checkout
+      - run:
+          name: Get tools
+          command: 
+                mkdir ~/bin
+                curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+                chmod a+x ~/bin/repo
+                PATH=$PATH:~/bin     
+                git clone https://github.com/yzouad-christ/jenkins-yocto.git
+                chmod -R a+x ~/jenkins-yocto
+      - run:
+          name: Clone ces-bsp-platform
+          command:                                          
+                mkdir ces-bsp-platform
+                cd ces-bsp-platform
+                repo init -u https://github.com/software-celo/ces-bsp-platform -b warrior
+                repo sync
+      - run:
+          name: Build ces-qt-demoimage (pixi-cdl100)
+          command:
+                MACHINE=pixi-cdl100
+                DISTRO=ces-fb
+                source ces-bsp-platform/setup-environment build && bitbake ces-qt-demoimage
+
+      - run:
+          name: Build ces-qt-demoimage (crix-cql100)
+          command:
+                MACHINE=crix-cq100 
+                DISTRO=ces-fb
+                source ces-bsp-platform/setup-environment build && bitbake ces-qt-demoimage
+
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  workflow:
     jobs:
-      - welcome/run
+      - build
