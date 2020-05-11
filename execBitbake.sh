@@ -56,7 +56,7 @@ echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local
 #FORCE_UNSAFE_CONFIGURE=1
 
 # Expand PATH variable
-PATH=/home/jenkins/ces-bsp-platform/sources/poky/scripts:/home/jenkins/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
+PATH=/home/builder/ces-bsp-platform/sources/poky/scripts:/home/builder/ces-bsp-platform/sources/poky/bitbake/bin:${PATH}
 
 # Build image
 if [ -z $DEBUG ]; then
