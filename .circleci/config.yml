@@ -24,7 +24,7 @@ jobs:
           command: |
                 MACHINE=pixi-cdl100
                 DISTRO=ces-fb
-                printf 'yyy' | source /home/builder/ces-bsp-platform/setup-environment build
+                echo "ACCEPT_FSL_EULA = \"1\"" >> /home/builder/ces-bsp-platform/build/conf/local.conf | source /home/builder/ces-bsp-platform/setup-environment build
                 bitbake ces-qt-demoimage
 
       - run:
@@ -32,7 +32,7 @@ jobs:
           command: |
                 MACHINE=crix-cq100 
                 DISTRO=ces-fb
-                printf 'yyy' | 'source /home/builder/ces-bsp-platform/setup-environment build
+                echo "ACCEPT_FSL_EULA = \"1\"" >> /home/builder/ces-bsp-platform/build/conf/local.conf | 'source /home/builder/ces-bsp-platform/setup-environment build
                 bitbake ces-qt-demoimage
 
 
