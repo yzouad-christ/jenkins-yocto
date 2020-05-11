@@ -12,7 +12,9 @@ jobs:
       - checkout
       - run:
           name: Clone ces-bsp-platform
-          command: |                                         
+          command: |
+                git config --global user.email "yzouad@yzouad.com"
+                git config --global user.name "yzouad"
                 mkdir /home/builder/ces-bsp-platform
                 cd /home/builder/ces-bsp-platform
                 repo init -u https://github.com/software-celo/ces-bsp-platform -b warrior
