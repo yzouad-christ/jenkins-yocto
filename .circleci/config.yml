@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Get helper-scripts
           command: |
-                git clone https://github.com/yzouad-christ/jenkins-yocto.git /home/builder
+                git clone https://github.com/yzouad-christ/jenkins-yocto.git /home/builder/jenkins-yocto
                 cd /home/builder/jenkins-yocto
                 git checkout circleci-project-setup
                 chmod -R a+x /home/builder/jenkins-yocto
