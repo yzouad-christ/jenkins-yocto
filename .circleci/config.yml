@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Get tools
-          command: 
+          command: |
                 mkdir /home/yoctouser/bin
                 curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /home/yoctouser/bin/repo
                 chmod a+x /home/yoctouser/bin/repo
@@ -21,21 +21,21 @@ jobs:
                 chmod -R a+x /home/yoctouser/jenkins-yocto
       - run:
           name: Clone ces-bsp-platform
-          command:                                          
+          command: |                                         
                 mkdir /home/yoctouser/ces-bsp-platform
                 cd ces-bsp-platform
                 repo init -u https://github.com/software-celo/ces-bsp-platform -b warrior
                 repo sync
       - run:
           name: Build ces-qt-demoimage (pixi-cdl100)
-          command:
+          command: |
                 MACHINE=pixi-cdl100
                 DISTRO=ces-fb
                 source ces-bsp-platform/setup-environment build && bitbake ces-qt-demoimage
 
       - run:
           name: Build ces-qt-demoimage (crix-cql100)
-          command:
+          command: |
                 MACHINE=crix-cq100 
                 DISTRO=ces-fb
                 source ces-bsp-platform/setup-environment build && bitbake ces-qt-demoimage
