@@ -12,6 +12,7 @@ declare -a DIST_LIST=("ces-fb" "ces-x11")
 
 cd ${HOME_PATH}/ces-bsp-platform
 
+DEFAULT=0
 if [ ! -z $MACHINE_ARG ]; then
   MACHINE=${MACHINE_ARG}
 else
