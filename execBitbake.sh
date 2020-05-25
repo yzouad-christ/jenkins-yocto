@@ -57,7 +57,7 @@ source ./setup-environment build/ | echo 'y'
 cd ${HOME_PATH}/ces-bsp-platform/build
 
 # copy new bblayer.conf if customer image has to be build
-if [ ! -z $BRANCH_ARG ]; then
+if [ ! -z ${BRANCH_ARG+x} ]; then
   cp ${HOME_PATH}/bblayers.conf ${HOME_PATH}/ces-bsp-platform/build/conf/bblayers.conf
 fi
 
