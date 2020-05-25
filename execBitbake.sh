@@ -56,6 +56,11 @@ source ./setup-environment build/ | echo 'y'
 
 cd ${HOME_PATH}/ces-bsp-platform/build
 
+# copy new bblayer.conf if customer image has to be build
+if [ ! -z BRANCH_ARG ];
+  cp ${HOME_PATH}/bblayers.conf ${HOME_PATH}/ces-bsp-platform/build/conf
+fi
+
 # Accept FSL_EULA
 echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local.conf
 
