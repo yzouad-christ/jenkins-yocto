@@ -18,6 +18,15 @@ RUN echo "152" | dpkg-reconfigure locales
 # Set working directory.
 WORKDIR /home/jenkins
 
+# copy script
+COPY getHelperScripts.sh /home/jenkins
+
+# create directory
+RUN mkdir /home/jenkins/meta-customer
+
+# Copy customer-layer to home dir
+COPY meta-customer/ /home/jenkins/meta-customer
+
 # change owner of /home/jenkins directory
 RUN chown -R jenkins /home/jenkins
 
