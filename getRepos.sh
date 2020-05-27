@@ -12,6 +12,7 @@ cd $HOME_PATH/ces-bsp-platform
 
 if [ ! "$(ls -A ${HOME_PATH}/ces-bsp-platform)" ]; then
   $HOME_PATH/bin/repo init -u $GIT_URL -b $BRANCH
+  $HOME_PATH/bin/repo sync
 else
   mkdir /tmp/ces-bsp-platform
   cd /tmp/ces-bsp-platform
