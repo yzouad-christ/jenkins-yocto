@@ -10,6 +10,6 @@ fi
 
 cd $HOME_PATH/ces-bsp-platform
 
-if [ ! "$(ls -A ${HOME_PATH}/ces-bsp-platform)" ]; then
+#if [ ! "$(ls -A ${HOME_PATH}/ces-bsp-platform)" ]; then
   $HOME_PATH/bin/repo init -u $GIT_URL -b $BRANCH
-fi
+#fi
