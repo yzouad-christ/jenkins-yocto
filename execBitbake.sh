@@ -14,12 +14,12 @@ declare -a DIST_LIST=("ces-fb" "ces-x11")
 cd ${HOME_PATH}/ces-bsp-platform
 
 # checkout branch in meta-customer
-if [ ! -z $BRANCH_ARG  ]; then
-  BRANCH=$BRANCH_ARG
-  cd sources/meta-customer
-  git checkout $BRANCH
-  cd ${HOME_PATH}/ces-bsp-platform
-fi
+#if [ ! -z $BRANCH_ARG  ]; then
+#  BRANCH=$BRANCH_ARG
+#  cd sources/meta-customer
+#  git checkout $BRANCH
+#  cd ${HOME_PATH}/ces-bsp-platform
+#fi
 
 # check if arguments are set
 DEFAULT=0
