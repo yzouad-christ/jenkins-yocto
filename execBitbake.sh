@@ -6,35 +6,31 @@ DISTRO_ARG=$3
 IMAGE_ARG=$4
 BRANCH_ARG=$5
 
-#Supported devices:
-declare -a DEV_LIST=("pixi-cdl100" "pixi-cq100" "pixi-cq200" "crix-cq100" "crix-arq100" "blix-bdl100" "blix-bq100" "4cbox-cdl100" "4cbox-cdl200" "4cbox-cq100" "4cbox-cq200")
-#Supported distributions:
-declare -a DIST_LIST=("ces-fb" "ces-x11")
 
 cd ${HOME_PATH}/ces-bsp-platform
 
-# checkout branch in meta-customer
-#if [ ! -z $BRANCH_ARG  ]; then
-#  BRANCH=$BRANCH_ARG
-#  cd sources/meta-customer
-#  git checkout $BRANCH
-#  cd ${HOME_PATH}/ces-bsp-platform
-#fi
+ checkout branch in meta-customer
+if [ ! -z "$BRANCH_ARG"  ]; then
+  BRANCH=$BRANCH_ARG
+  cd sources/meta-customer
+  git checkout $BRANCH
+  cd ${HOME_PATH}/ces-bsp-platform
+fi
 
 # check if arguments are set
 DEFAULT=0
-if [ ! -z $MACHINE_ARG ]; then
+if [ ! -z "$MACHINE_ARG" ]; then
   MACHINE=${MACHINE_ARG}
 else
   DEFAULT=1
 fi
 
-if [ ! -z $DISTRO_ARG ]; then
+if [ ! -z "$DISTRO_ARG" ]; then
   DISTRO=${DISTRO_ARG}
 else
   DEFAULT=1
 fi
-if [ ! -z $IMAGE_ARG ]; then
+if [ ! -z "$IMAGE_ARG" ]; then
   IMAGE=${IMAGE_ARG}
 else
   DEFAULT=1
@@ -57,9 +53,9 @@ source ./setup-environment build/ | echo 'y'
 cd ${HOME_PATH}/ces-bsp-platform/build
 
 # copy new bblayer.conf if customer image has to be build
-#if [ ! -z ${BRANCH_ARG+x} ]; then
-#cp ${HOME_PATH}/bblayers.conf ${HOME_PATH}/ces-bsp-platform/build/conf/bblayers.conf
-#fi
+if [ ! -z "$BRANCH_ARG" ]; then
+  cp ${HOME_PATH}/bblayers.conf ${HOME_PATH}/ces-bsp-platform/build/conf/bblayers.conf
+fi
 
 # Accept FSL_EULA
 echo "ACCEPT_FSL_EULA = \"1\"" >> ${HOME_PATH}/ces-bsp-platform/build/conf/local.conf
